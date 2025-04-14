@@ -7,7 +7,6 @@ function EduInfo({ eduDetails, updateEduDetails }) {
 
   const handleAction = (e) => {
     e.preventDefault();
-    e.clear();
     updateEduDetails({
       degName: degName.trim() ? degName.trim() : eduDetails.degName,
       clgName: clgName.trim() ? clgName.trim() : eduDetails.clgName,
