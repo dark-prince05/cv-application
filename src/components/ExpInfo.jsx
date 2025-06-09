@@ -24,7 +24,7 @@ function ExpInfo({ expDetails, updateExpDetails }) {
           <label> Company:</label>
           <br />
           <input
-            placeholder="Java, JavaScript, SQL"
+            placeholder="Odin Corporation"
             type="text"
             onChange={(e) => (compName = e.target.value)}
           />
@@ -33,7 +33,7 @@ function ExpInfo({ expDetails, updateExpDetails }) {
           <label> Position:</label>
           <br />
           <input
-            placeholder="Git, GitHub, NeoVIM"
+            placeholder="Full Stack Developer"
             type="text"
             onChange={(e) => (pos = e.target.value)}
           />

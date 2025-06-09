@@ -20,7 +20,6 @@ function GenInfo({ genDetails, updateGenDetails }) {
 
   return (
     <div className="gen-details">
-      <h1>CV Generator</h1>
       <form onSubmit={handleAction}>
         <h2>Personel Details</h2>
         <div>
@@ -63,7 +62,7 @@ function GenInfo({ genDetails, updateGenDetails }) {
           <label> LinkedIn:</label>
           <br />
           <input
-            placeholder="linedin.com/john-doe"
+            placeholder="linkedin.com/john-doe"
             type="text"
             onChange={(e) => (linkedIn = e.target.value)}
           />

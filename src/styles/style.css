@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+:root {
+  --bg-color1: #2f3c7e;
+  --bg-color2: #fbeaeb;
+}
+
 .details {
   display: flex;
 }
@@ -12,12 +17,12 @@
 }
 
 .user-info {
-  background-color: #2f3c7e;
+  background-color: var(--bg-color1);
   overflow: scroll;
   height: 100vh;
 }
 
-.gen-details > h1 {
+.obj-details > h1 {
   color: white;
   text-align: center;
   font-size: 2.5rem;
@@ -37,7 +42,7 @@ form {
 
 .preview {
   width: 50vw;
-  background-color: #fbeaeb;
+  background-color: var(--bg-color2);
   height: 100vh;
   overflow: scroll;
 }
@@ -47,7 +52,7 @@ form {
   height: 1.7rem;
   border-radius: 0.5rem;
   font-size: 1rem;
-  border: 2px solid #2f3c7e;
+  border: 2px solid var(--bg-color1);
   padding-left: 0.1rem;
 }
 
@@ -59,7 +64,7 @@ form {
   justify-self: end;
   width: 5rem;
   height: 2.5rem;
-  background-color: #2f3c7e;
+  background-color: var(--bg-color1);
   color: white;
   font-weight: bold;
   font-size: 1.2rem;
@@ -82,9 +87,8 @@ form {
   width: 28rem;
   height: 37rem;
   background-color: #ffffff;
-  margin: 2rem auto;
   box-shadow: 3px 5px 10px #00000030;
-  padding: 2rem;
+  padding: 1rem 1.5rem;
 }
 
 .gen-info {
@@ -93,8 +97,13 @@ form {
   margin-bottom: 1rem;
 }
 
+.gen-info h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
 .preview p {
-  font-size: 0.6rem;
+  font-size: 10px;
 }
 
 .edu-info > div,
@@ -104,8 +113,19 @@ form {
 }
 
 .edu-info,
+.obj-info,
+.exp-info,
 .skill-info {
   margin-bottom: 1rem;
+}
+
+.edu-info h4,
+.skill-info h4,
+.obj-info h4,
+.cert-info h4,
+.exp-info h4 {
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .skill-info span,
@@ -114,8 +134,9 @@ form {
   line-height: 1.7;
 }
 
-.exp-details textarea {
-  border: 2px solid #2f3c7e;
+.exp-details textarea,
+.obj-details textarea {
+  border: 2px solid var(--bg-color1);
   resize: vertical;
   width: 25vw;
   min-height: 1rem;
@@ -167,6 +188,7 @@ form {
   .details input {
     width: 70vw;
   }
+
   .cv-sheet {
     width: 70vw;
     height: 70vh;
@@ -193,4 +215,21 @@ form {
   .skill-info > h4 {
     font-size: 0.6rem;
   }
+}
+
+.right-container {
+  display: grid;
+  justify-content: center;
+}
+
+.download {
+  justify-self: end;
+  margin: 1rem;
+  border: none;
+  background-color: var(--bg-color1);
+  color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
 }

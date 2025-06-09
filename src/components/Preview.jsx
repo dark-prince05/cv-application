@@ -1,16 +1,50 @@
 import { useState } from "react";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
-function Preview({ genDetails, eduDetails, skillDetails, expDetails }) {
+const downloadResume = () => {
+  const input = document.querySelector("#cv-preview");
+
+  html2canvas(input).then((canvas) => {
+    const img = canvas.toDataURL("image/png");
+    const pdf = new jsPDF("p", "pt", "a4");
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+    pdf.addImage(img, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("resume.pdf");
+  });
+};
+
+function Preview({
+  genDetails,
+  objDetails,
+  eduDetails,
+  skillDetails,
+  expDetails,
+  certDetails,
+}) {
   return (
-    <div>
-      <div className="cv-sheet">
+    <div className="right-container">
+      <button className="download" onClick={downloadResume}>
+        Download
+      </button>
+      <div className="cv-sheet" id="cv-preview">
         <div className="gen-info">
           <h2>{genDetails.name}</h2>
           <p>GitHub: {genDetails.github}</p>
           <p>Email: {genDetails.email}</p>
           <p>
-            {genDetails.phone} | {genDetails.linkedIn}
+            {genDetails.phone} | LinkedIn: {genDetails.linkedIn}
           </p>
+        </div>
+        <div className="obj-info">
+          <h4>Objective</h4>
+          <hr style={{ margin: ".4rem 0" }} />
+          <div>
+            <p>{objDetails}</p>
+          </div>
         </div>
         <div className="edu-info">
           <h4>Education</h4>
@@ -50,6 +84,15 @@ function Preview({ genDetails, eduDetails, skillDetails, expDetails }) {
             <span>Role:</span> {expDetails.pos}
           </p>
           <p>{expDetails.desc}</p>
+        </div>
+        <div className="cert-info">
+          <h4>Certificates</h4>
+          <hr style={{ margin: ".4rem 0" }} />
+          <div>
+            <p>
+              {certDetails.certName} ({certDetails.certYear})
+            </p>
+          </div>
         </div>
       </div>
     </div>
