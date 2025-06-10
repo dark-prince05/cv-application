@@ -40,10 +40,23 @@ function Details() {
     "Enthusiastic and motivated final-year Computer Science student, continuously expanding knowledge in frontend development. Proficient in frontend technologies like HTML, CSS, JavaScript, and React.js, with a solid foundation in Java. Eager to apply my skills and learning mindset in a collaborative environment to contribute to impactful software solutions.",
   );
 
-  const [certDetails, updateCertDetails] = useState({
-    certName: "Java Programming 1 & 2",
-    certYear: "2022",
-  });
+  const [certDetails, updateCertDetails] = useState([
+    {
+      id: 0,
+      certName: "Java Programming 1 & 2",
+      certYear: "2022",
+    },
+  ]);
+
+  const handleCertRemove = (id) => {
+    const newCertDetails = [...certDetails];
+    newCertDetails.splice(id, 1);
+    newCertDetails.map((certs, ind) => {
+      certs.id = ind;
+    });
+
+    updateCertDetails(newCertDetails);
+  };
 
   return (
     <div className="details">
@@ -69,6 +82,7 @@ function Details() {
           skillDetails={skillDetails}
           expDetails={expDetails}
           certDetails={certDetails}
+          handleCertRemove={handleCertRemove}
         />
       </div>
     </div>

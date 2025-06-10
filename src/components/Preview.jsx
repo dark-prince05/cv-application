@@ -5,7 +5,7 @@ import jsPDF from "jspdf";
 const downloadResume = () => {
   const input = document.querySelector("#cv-preview");
 
-  html2canvas(input).then((canvas) => {
+  html2canvas(input, { scale: 3 }).then((canvas) => {
     const img = canvas.toDataURL("image/png");
     const pdf = new jsPDF("p", "pt", "a4");
 
@@ -24,6 +24,7 @@ function Preview({
   skillDetails,
   expDetails,
   certDetails,
+  handleCertRemove,
 }) {
   return (
     <div className="right-container">
@@ -89,9 +90,21 @@ function Preview({
           <h4>Certificates</h4>
           <hr style={{ margin: ".4rem 0" }} />
           <div>
-            <p>
-              {certDetails.certName} ({certDetails.certYear})
-            </p>
+            {certDetails.map((certificates) => (
+              <div key={certificates.id} className="delete-cert">
+                <ul>
+                  <li>
+                    {certificates.certName} ({certificates.certYear})
+                  </li>
+                </ul>
+                <p
+                  className="remove-btn"
+                  onClick={() => handleCertRemove(certificates.id)}
+                >
+                  x
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

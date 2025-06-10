@@ -1,18 +1,40 @@
 function CertInfo({ certDetails, updateCertDetails }) {
-  let certificate = certDetails.certName;
-  let certYear = certDetails.certYear;
+  let certificate = "";
+  let certYear = "";
 
-  const handleAction = (e) => {
+  const handleSave = (e) => {
     e.preventDefault();
-    updateCertDetails({
-      certName: certificate.trim() ? certificate.trim() : certDetails.certName,
-      certYear: certYear.trim() ? certYear.trim() : certDetails.certYear,
-    });
+    const ind = certDetails.length - 1;
+    const updated = {
+      id: certDetails[ind].id,
+      certName: certificate.trim() || certDetails[ind].certName,
+      certYear: certYear.trim() || certDetails[ind].certYear,
+    };
+
+    const newCertDetails = [...certDetails];
+    newCertDetails[ind] = updated;
+
+    updateCertDetails(newCertDetails);
+  };
+
+  const handleAdd = (e) => {
+    e.preventDefault();
+    const ind = certDetails.length - 1;
+    const newCert = {
+      id: certDetails[ind].id + 1,
+      certName: certificate.trim() || certDetails[ind].certName,
+      certYear: certYear.trim() || certDetails[ind].certYear,
+    };
+
+    const newCertDetails = [...certDetails];
+    newCertDetails.push(newCert);
+
+    updateCertDetails(newCertDetails);
   };
 
   return (
     <div className="cert-details">
-      <form onSubmit={handleAction}>
+      <form>
         <h2>Certficates</h2>
         <div>
           <label> Certificate Name:</label>
@@ -32,7 +54,14 @@ function CertInfo({ certDetails, updateCertDetails }) {
             onChange={(e) => (certYear = e.target.value)}
           />
         </div>
-        <button className="btn">Save</button>
+        <div className="btns">
+          <button className="btn" onClick={handleAdd}>
+            Add
+          </button>
+          <button className="btn" onClick={handleSave}>
+            Save
+          </button>
+        </div>
       </form>
     </div>
   );
